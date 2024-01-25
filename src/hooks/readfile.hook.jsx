@@ -1,9 +1,15 @@
 import React from 'react'
 
 const useFileReader = () => {
-  return (
-    <div>useFileReader</div>
-  )
+
+  const readJSONFile = (file) => {
+
+  }
+
+
+  return {
+    readJSONFile
+  }
 }
 
 export default useFileReader;

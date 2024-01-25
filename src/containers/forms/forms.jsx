@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import { PageWrapper } from "./forms.styled";
 
 const Forms = () => {
   return (
-    <div>Forms</div>
+    <PageWrapper>Forms</PageWrapper>
   )
 }
 
