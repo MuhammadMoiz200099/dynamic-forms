@@ -4,13 +4,16 @@ import Home from "../containers/home/home";
 import Forms from "../containers/forms/forms";
 import NotFound from "../components/notFound/notFound";
 import BaseLayout from "../components/baseLayout/baseLayout";
+import Thankyou from "../containers/thankyou/thankyou";
 
 const Navigation = () => {
+
     return (
         <Routes>
             <Route path="/app" element={<BaseLayout />}>
                 <Route path="home" element={<Home />} />
                 <Route path="forms" element={<Forms />} />
+                <Route path="thankyou" element={<Thankyou />} />
             </Route>
             <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Navigate to="/app/home" />} />

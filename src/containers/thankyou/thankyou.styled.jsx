@@ -9,6 +9,9 @@ const PageWrapper = styled.div`
     gap: 20px;
 
     .title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
         margin-top: 40px;
         font-family: sans-serif;
         font-size: 24px;

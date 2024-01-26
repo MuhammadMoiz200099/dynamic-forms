@@ -1,0 +1,86 @@
+[
+        {
+                "inline": true,
+                "type": "inlineFields",
+                "fields": [
+                        {
+                                "title": "firstName",
+                                "name": "firstname",
+                                "placeholder": "First name",
+                                "required": true,
+                                "type": "text"
+                        },
+                        {
+                                "title": "lastName",
+                                "name": "lastname",
+                                "placeholder": "Last name",
+                                "required": true,
+                                "type": "text"
+                        }
+                ]
+        },
+        {
+                "title": "Email",
+                "name": "email",
+                "required": true,
+                "placeholder": "Email Address",
+                "type": "text"
+        },
+        {
+                "title": "address1",
+                "name": "address",
+                "placeholder": "Address 1",
+                "type": "text"
+        },
+        {
+                "inline": true,
+                "type": "inlineFields",
+                "fields": [
+                        {
+                                "title": "city",
+                                "name": "city",
+                                "placeholder": "City",
+                                "type": "text"
+                        },
+                        {
+                                "title": "state",
+                                "name": "state",
+                                "placeholder": "State",
+                                "type": "text"
+                        },
+                        {
+                                "title": "zip",
+                                "name": "zip",
+                                "placeholder": "Zip Code",
+                                "type": "text"
+                        }
+                ]
+        },
+        {
+                "title": "phone",
+                "name": "phone",
+                "required": true,
+                "placeholder": "Phone Number",
+                "type": "text"
+        },
+        {
+                "title": "job Title",
+                "name": "jobtitle",
+                "options": [
+                        "Engineer - lead",
+                        "Engineer - mid level",
+                        "Engineer - junion",
+                        "Engineer - front end focused",
+                        "Engineer - backend focused",
+                        "Engineer - full stack"
+                ],
+                "placeholder": "Please select job title",
+                "type": "select"
+        },
+        {
+                "title": "reason",
+                "name": "reason",
+                "placeholder": "Describe why you are a good fit for the job you are applying for.",
+                "type": "textarea"
+        }
+]

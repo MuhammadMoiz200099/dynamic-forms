@@ -8,7 +8,7 @@ const PageWrapper = styled.div`
 const NavbarWrapper = styled.nav`
     background: #0e85c9;
     color: white;
-    padding: 10px;
+    padding: 20px 10px;
     box-shadow: 1px 1px 11px #6d6d6d;
 
     @media only screen and (max-width: 500px) {

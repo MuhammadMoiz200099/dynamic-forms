@@ -19,6 +19,7 @@ const PrimaryButtonWrapper = styled.button`
     &:disabled {
         background: gray !important;
         cursor: not-allowed !important;
+        border: 1px solid gray !important;
         &:hover {
             background: gray !important;
         }

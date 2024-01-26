@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { PageWrapper, UploadBoxWrapper, FileDetails } from "./home.styled";
 import PrimaryButton from '../../components/buttons/primaryButton';
 import { FaUpload } from "react-icons/fa";
@@ -7,10 +7,12 @@ import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import useFileReader from '../../hooks/readfile.hook';
 import { loadFileData, resetFileData } from '../../redux/slices/file.slice';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const fileUploader = useFileReader();
   const fileInputRef = useRef(null);
   const fileData = useSelector((state) => state.file.fileData);
@@ -51,12 +53,16 @@ const Home = () => {
     }
   }
 
-  const handleRemoveFile = (index) => {
+  const handleRemoveFile = () => {
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
     dispatch(resetFileData())
   };
+
+  const loadForm = () => {
+    navigate('/app/forms');
+  }
 
   return (
     <PageWrapper>
@@ -82,7 +88,7 @@ const Home = () => {
           </>
         )}
       </UploadBoxWrapper>
-      <PrimaryButton title={"Load Form"} disabled={!fileData && !fileData?.length} />
+      <PrimaryButton title={"Load Form"} disabled={!fileData && !fileData?.length} onClick={loadForm} />
     </PageWrapper>
   )
 }
