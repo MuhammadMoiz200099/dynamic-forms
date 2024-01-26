@@ -16,6 +16,13 @@ const PrimaryButtonWrapper = styled.button`
     &:hover {
         background: #0a6a9f !important;
     }
+    &:disabled {
+        background: gray !important;
+        cursor: not-allowed !important;
+        &:hover {
+            background: gray !important;
+        }
+    }
 `;
 
 

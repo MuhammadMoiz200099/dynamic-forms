@@ -6,6 +6,10 @@ const PageWrapper = styled.div`
     justify-content: center;
     align-items: center;
     gap: 20px;
+
+    .file-input {
+        display: none;
+    }
     
     .title {
         margin-top: 40px;
@@ -71,7 +75,23 @@ const UploadBoxWrapper = styled.div`
 
 `;
 
+const FileDetails = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+
+    .file-name {
+        font-family: sans-serif;
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: .2rem;
+        font-weight: 600;
+    }
+`
+
 export {
     PageWrapper,
-    UploadBoxWrapper
+    UploadBoxWrapper,
+    FileDetails
 }
