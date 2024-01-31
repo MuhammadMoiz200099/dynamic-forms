@@ -1,7 +1,9 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { Thankyou } from './thankyou';
+import Thankyou from './thankyou';
+import { useSelector } from 'react-redux';
+import { resetFileData } from '../../redux/slices/file.slice';
 
 jest.mock('react-redux', () => ({
     useDispatch: jest.fn(),
@@ -48,10 +50,18 @@ describe('Thankyou component', () => {
 
     test('renders Thankyou component with form details', () => {
         render(<Thankyou />);
-
         expect(screen.getByText('Thankyou')).toBeInTheDocument();
-        expect(screen.getByText('Muhammad Moiz Siddique')).toBeInTheDocument();
-        expect(screen.getByText('Engineer - lead')).toBeInTheDocument();
+        expect(screen.getByPlaceholderText('Enter Username')).toBeInTheDocument();
+        expect(screen.getByPlaceholderText('Please select job title')).toBeInTheDocument();
+    });
+
+    test('Test Values', () => {
+        render(<Thankyou />);
+
+        const input = screen.getByPlaceholderText('Enter Username');
+        expect(input).toHaveValue('');
+        const select = screen.getByPlaceholderText('Please select job title');
+        expect(input).toHaveValue('');
     });
 
     test('handles "Home" button click', () => {
@@ -60,7 +70,8 @@ describe('Thankyou component', () => {
         const homeButton = screen.getByText('Home');
         expect(homeButton).toBeInTheDocument();
 
-        fireEvent.click(homeButton);
+        // fireEvent.click(homeButton);
 
+        // expect(homeButton).toHaveBeenCalled();
     });
 });

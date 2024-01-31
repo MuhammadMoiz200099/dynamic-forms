@@ -31,20 +31,20 @@ const Thankyou = () => {
             <div className='subtitle'>Your Response have been saved Successfully</div>
             {fileData && fileData?.length ? (
                 <FormWrapper className='my-form'>
-                    <FormControlContainer className='form-container'>
-                        {fileData.map((item) => (<>
+                    <FormControlContainer className='form-container' key="form-control-wrapper-content-1">
+                        {fileData.map((item, idx) => (<React.Fragment key={`${item.title}-${idx}`} >
                             {item.type === 'text' && (
-                                <FormControl>
+                                <FormControl key={item.name}>
                                     <FormLabel>{item?.title} {item?.required && <span className='star'>*</span>} </FormLabel>
                                     <FormInput type='text' name={item?.name} placeholder={item?.placeholder} value={formDetails[item.name]} disabled />
                                 </FormControl>
                             )}
                             {item.type === 'inlineFields' && (
-                                <InlineFormFieldsContainer className='inline-container-form-group'>
+                                <InlineFormFieldsContainer className='inline-container-form-group' key={item.name}>
                                     {item?.fields && item?.fields?.length ? (
                                         <>
                                             {item?.fields.map((itm) => (
-                                                <FormControl>
+                                                <FormControl key={itm.name}>
                                                     <FormLabel>{itm?.title} {itm?.required && <span className='star'>*</span>} </FormLabel>
                                                     <FormInput type='text' name={itm?.name} placeholder={itm?.placeholder} value={formDetails[itm.name]} disabled />
                                                 </FormControl>
@@ -54,7 +54,7 @@ const Thankyou = () => {
                                 </InlineFormFieldsContainer>
                             )}
                             {item.type === 'select' && (
-                                <FormControl>
+                                <FormControl key={item.name}>
                                     <FormLabel>{item.title} {item?.required && <span className='star'>*</span>} </FormLabel>
                                     <FormSelect placeholder={item?.placeholder} name={item?.name} defaultValue={formDetails[item.name]} disabled>
                                         <FormSelectOption value={formDetails[item.name]}>{formDetails[item.name]}</FormSelectOption>
@@ -62,15 +62,15 @@ const Thankyou = () => {
                                 </FormControl>
                             )}
                             {item.type === 'textarea' && (
-                                <FormControl>
+                                <FormControl key={item.name}>
                                     <FormLabel>{item.title} {item?.required && <span className='star'>*</span>} </FormLabel>
                                     <FormTextArea placeholder={item.placeholder} value={formDetails[item.name]} cols={item.cols ? item.cols : 60} disabled rows={item.rows ? item.rows : 5} ></FormTextArea>
                                 </FormControl>
                             )}
-                        </>)
+                        </React.Fragment>)
                         )}
                     </FormControlContainer>
-                    <div className='form-button-container'>
+                    <div className='form-button-container' key="form-control-wrapper-content-2">
                         <PrimaryButton title="Home" type="button" onClick={gotoHome} />
                     </div>
                 </FormWrapper>

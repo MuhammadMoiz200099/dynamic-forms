@@ -46,7 +46,7 @@ const Home = () => {
   const convertFileTypeToObject = (e) => {
     return {
       lastModified: e.lastModified,
-      lastModifiedDate: new Date(e.lastModifiedDate).toISOString(),
+      lastModifiedDate: new Date().toISOString(),
       name: e.name,
       size: e.size,
       type: e.type
@@ -69,12 +69,12 @@ const Home = () => {
       <div className='title'>
         File Upload
       </div>
-      <input ref={fileInputRef} type="file" onChange={(e) => handleFileOpen(e, 'fileInput')} className='file-input' />
+      <input ref={fileInputRef} type="file" onChange={(e) => handleFileOpen(e, 'fileInput')} className='file-input' data-testid="file-input-id" />
       <UploadBoxWrapper className='upload-wrapper' onClick={handleFileSelectClick} onDragOver={(e) => e.preventDefault()} onDrop={(e) => handleFileOpen(e, 'drop')} >
         {fileDetails ? (
           <FileDetails>
             <span className='file-name'>{fileDetails?.name}</span>
-            <MdClose size={18} onClick={handleRemoveFile} />
+            <MdClose name="Close icon" size={18} onClick={handleRemoveFile} data-testid='close-btn-icon' />
           </FileDetails>
         ) : (
           <>

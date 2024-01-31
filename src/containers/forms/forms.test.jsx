@@ -1,7 +1,9 @@
 import React from 'react';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { Forms } from './forms';
+import Forms from './forms';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 jest.mock('react-redux', () => ({
   useDispatch: jest.fn(),
@@ -46,22 +48,21 @@ describe('Forms component', () => {
   test('renders form with input fields', () => {
     render(<Forms />);
 
-    // You can use screen.getByLabelText, screen.getByPlaceholderText, etc.
-    expect(screen.getByLabelText('Username')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Enter Username')).toHaveAttribute('name', 'username');
     expect(screen.getByPlaceholderText('Enter Username')).toBeInTheDocument();
 
-    expect(screen.getByLabelText('job Title')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Please select job title')).toHaveAttribute('name', 'jobtitle');
     expect(screen.getByPlaceholderText('Please select job title')).toBeInTheDocument();
   });
 
   test('handles input change', () => {
     render(<Forms />);
 
-    const nameInput = screen.getByLabelText('Username');
+    const nameInput = screen.getByPlaceholderText('Enter Username');
     fireEvent.change(nameInput, { target: { value: 'Muhammad Moiz Siddique' } });
-    expect(nameInput.value).toBe('John');
+    expect(nameInput.value).toBe('Muhammad Moiz Siddique');
 
-    const selectInput = screen.getByLabelText('job Title');
+    const selectInput = screen.getByPlaceholderText('Please select job title');
     fireEvent.change(selectInput, { target: { value: 'Engineer - lead' } });
     expect(selectInput.value).toBe('Engineer - lead');
   });
@@ -69,22 +70,17 @@ describe('Forms component', () => {
   test('submits form data', async () => {
     render(<Forms />);
 
-    // Mock the dispatch function
     const mockDispatch = jest.fn();
     useDispatch.mockReturnValue(mockDispatch);
 
-    // Mock the navigate function
     const mockNavigate = jest.fn();
     useNavigate.mockReturnValue(mockNavigate);
 
-    // Fill in form data
-    fireEvent.change(screen.getByLabelText('Username'), { target: { value: 'Muhammad Moiz Siddique' } });
-    fireEvent.change(screen.getByLabelText('Muhammad Moiz Siddique'), { target: { value: 'Engineer - lead' } });
+    fireEvent.change(screen.getByPlaceholderText('Enter Username'), { target: { value: 'Muhammad Moiz Siddique' } });
+    fireEvent.change(screen.getByPlaceholderText('Please select job title'), { target: { value: 'Engineer - lead' } });
 
-    // Submit the form
     fireEvent.click(screen.getByText('Submit'));
 
-    // Wait for asynchronous actions to complete (e.g., submitFormData)
     await waitFor(() => {
       expect(mockDispatch).toHaveBeenCalledTimes(1);
       expect(mockNavigate).toHaveBeenCalledWith('/app/thankyou');

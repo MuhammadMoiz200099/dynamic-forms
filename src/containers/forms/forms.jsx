@@ -57,20 +57,20 @@ const Forms = () => {
       <div className='title'>My Form</div>
       {data && data?.length ? (
         <FormWrapper className='my-form' onSubmit={handleOnSubmit}>
-          <FormControlContainer className='form-container'>
-            {data.map((item) => (<>
+          <FormControlContainer className='form-container' key="form-control-wrapper-content">
+            {data.map((item, idx) => (<React.Fragment key={`${item.title}-${idx}`} >
               {item.type === 'text' && (
-                <FormControl>
+                <FormControl key={item.name}>
                   <FormLabel>{item?.title} {item?.required && <span className='star'>*</span>} </FormLabel>
                   <FormInput type='text' name={item?.name} placeholder={item?.placeholder} required={item?.required ? true : false} onChange={handleOnChange} />
                 </FormControl>
               )}
               {item.type === 'inlineFields' && (
-                <InlineFormFieldsContainer className='inline-container-form-group'>
+                <InlineFormFieldsContainer className='inline-container-form-group' key={item.name}>
                   {item?.fields && item?.fields?.length ? (
                     <>
                       {item?.fields.map((itm) => (
-                        <FormControl>
+                        <FormControl key={itm.name}>
                           <FormLabel>{itm?.title} {itm?.required && <span className='star'>*</span>} </FormLabel>
                           <FormInput type='text' name={itm?.name} placeholder={itm?.placeholder} required={itm?.required ? true : false} onChange={handleOnChange} />
                         </FormControl>
@@ -80,14 +80,14 @@ const Forms = () => {
                 </InlineFormFieldsContainer>
               )}
               {item.type === 'select' && (
-                <FormControl>
+                <FormControl key={item.name}>
                   <FormLabel>{item.title} {item?.required && <span className='star'>*</span>} </FormLabel>
                   <FormSelect placeholder={item?.placeholder} name={item?.name} onChange={handleOnChange}>
                     {item?.placeholder && (<FormSelectOption value="">{item?.placeholder}</FormSelectOption>)}
                     {item?.options && item?.options?.length ? (
                       <>
                         {item.options.map((option) => (
-                          <FormSelectOption value={option}>{option}</FormSelectOption>
+                          <FormSelectOption key={option} value={option}>{option}</FormSelectOption>
                         ))}
                       </>
                     ) : null}
@@ -95,12 +95,12 @@ const Forms = () => {
                 </FormControl>
               )}
               {item.type === 'textarea' && (
-                <FormControl>
+                <FormControl key={item.name}>
                   <FormLabel>{item.title} {item?.required && <span className='star'>*</span>} </FormLabel>
                   <FormTextArea placeholder={item.placeholder} name={item?.name} required={item?.required ? true : false} onChange={handleOnChange} cols={item.cols ? item.cols : 60} rows={item.rows ? item.rows : 5} ></FormTextArea>
                 </FormControl>
               )}
-            </>)
+            </React.Fragment>)
             )}
           </FormControlContainer>
           <div className='form-button-container'>
